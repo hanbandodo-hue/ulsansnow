@@ -321,6 +321,30 @@ table{border-collapse:collapse;width:100%}
 .art-b{padding:20px 4px 26px;white-space:pre-wrap;border-bottom:1px solid var(--line)}
 .art-b a{color:var(--berry);font-weight:700}
 .art-i{margin:16px 4px 0;border-radius:10px;max-height:520px}
+.art-b.rich{white-space:normal;line-height:1.75}
+.art-b.rich h4{margin:30px 0 8px;font-size:19px;color:var(--wine)}
+.art-b.rich p{margin:0 0 10px}
+.art-b.rich ul{margin:0 0 8px;padding:0;list-style:none}
+.art-b.rich ul.bul{padding-left:1.3em;list-style:disc}
+.art-b.rich li>ul{margin:2px 0 6px}
+.art-b.rich .lead{margin-top:6px;font-size:19px;font-weight:700;color:var(--berry)}
+.art-b.rich .memo{color:var(--muted)}
+.art-b.rich .sign{margin-top:28px;font-weight:700}
+.art-b.rich table{width:100%;max-width:520px;margin:4px 0 8px;border-collapse:collapse}
+.art-b.rich th,.art-b.rich td{border:1px solid var(--line);padding:8px 10px;text-align:center}
+.art-b.rich th{background:var(--paper)}
+.art-b.rich .apply{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:4px 0 8px;padding:16px;border-radius:12px;background:var(--paper)}
+.art-b.rich .apply p{flex:1 1 240px;min-width:0;margin:0}
+.art-b.rich .apply+.rich-img{margin-top:18px}
+.rich-img{display:block;width:100%;max-width:560px;margin:0 0 18px;padding:0;border:0;background:none;cursor:zoom-in}
+.rich-img img{display:block;width:100%;height:auto;border-radius:10px}
+.btn.off{background:var(--line);color:var(--muted)}
+.recruit{display:block;background:var(--paper);color:var(--wine);text-decoration:none;border-bottom:1px solid var(--line)}
+.recruit-in{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding-top:14px;padding-bottom:14px}
+.recruit b{padding:3px 12px;border-radius:999px;background:var(--berry);color:var(--snow);font-size:15px}
+.recruit-in>span{min-width:0;font-weight:700}
+.recruit em{margin-left:auto;font-style:normal;font-weight:700;color:var(--berry)}
+.recruit:hover .recruit-in>span{text-decoration:underline}
 .ph-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .ph-grid a{display:block;text-decoration:none}
 .ph-grid img{width:100%;height:auto;border-radius:10px}
@@ -460,6 +484,7 @@ dialog::backdrop{background:rgba(30,5,8,.86)}
     <span class="num"><b>2026. 12. 24. (목) ~ 12. 27. (일)</b> <b class="band-d" data-dday>D-54</b></span><i></i>
     <span>울산 중구 성남동 젊음의거리 일원</span>
   </div></div>
+  <a class="recruit" id="recruit" href="#notice-6" hidden><span class="wrap recruit-in"><b>참가팀 모집</b><span>크리스마스 합창경연대회 · 11월 30일(월) 오후 6시까지</span><em>자세히 보기</em></span></a>
 
   <div class="sec"><div class="wrap">
     <div class="sec-head"><h2>축제 정보 안내</h2></div>
@@ -728,7 +753,7 @@ dialog::backdrop{background:rgba(30,5,8,.86)}
 <div class="toast" id="toast" hidden role="status"></div>
 
 <script>
-const IMG={"gal_28525_0": "img/gal_28525_0.jpg", "gal_28527_0": "img/gal_28527_0.jpg", "gal_28527_1": "img/gal_28527_1.jpg", "gal_28527_2": "img/gal_28527_2.jpg", "gal_28528_0": "img/gal_28528_0.jpg", "gal_28528_2": "img/gal_28528_2.jpg", "map": "img/map.png", "orn_clock": "img/orn_clock.jpg", "orn_dome": "img/orn_dome.jpg", "orn_lamp": "img/orn_lamp.jpg", "orn_sled": "img/orn_sled.jpg", "orn_tree": "img/orn_tree.jpg", "poster1": "img/poster1.jpg", "poster2": "img/poster2.jpg", "site": "img/site.webp"};
+const IMG={"choir_notice": "img/choir_notice.webp", "choir_poster": "img/choir_poster.webp", "gal_28525_0": "img/gal_28525_0.jpg", "gal_28527_0": "img/gal_28527_0.jpg", "gal_28527_1": "img/gal_28527_1.jpg", "gal_28527_2": "img/gal_28527_2.jpg", "gal_28528_0": "img/gal_28528_0.jpg", "gal_28528_2": "img/gal_28528_2.jpg", "map": "img/map.png", "orn_clock": "img/orn_clock.jpg", "orn_dome": "img/orn_dome.jpg", "orn_lamp": "img/orn_lamp.jpg", "orn_sled": "img/orn_sled.jpg", "orn_tree": "img/orn_tree.jpg", "poster1": "img/poster1.jpg", "poster2": "img/poster2.jpg", "site": "img/site.webp"};
 
 const GROUPS=[
   {name:'축제소개',items:['overview']},
@@ -749,7 +774,46 @@ const PAGES={
   review:{t:'참석후기',l:'다녀온 이야기를 들려주세요'},
   tour:{t:'관광정보',l:'함께 들르기 좋은 곳'}
 };
+/* 합창경연대회 모집 공고 (공고문 원문 그대로) */
+const FORM_URL='https://docs.google.com/forms/d/e/1FAIpQLSfonymL2CaoIDqGDuEbwKOtUtZB9KjpD03VN83Aj1SJg7fi_A/viewform';
+const CHOIR_OPEN=Date.now()<Date.parse('2026-11-30T18:00:00+09:00');
+const APPLY=CHOIR_OPEN?`<a class="btn gold" href="${FORM_URL}" target="_blank" rel="noopener">참가신청서 작성하기</a>`:'<span class="btn off">참가 신청이 마감되었습니다</span>';
+const CHOIR_HTML=`<div class="apply">${APPLY}<p>참가신청서 작성과 합창 영상 제출을 모두 완료해야 접수가 인정됩니다.</p></div>
+<button class="rich-img" data-zoom="choir_poster" aria-label="합창경연대회 포스터 크게 보기"><img src="${IMG['choir_poster']}" alt="크리스마스 합창경연대회 참가팀 모집 포스터" loading="lazy"></button>
+<p class="lead">“함께 부르는 노래로 성남동의 겨울이 더 특별해집니다!”</p>
+<p>제20회 성남동 눈꽃축제를 맞아 아름다운 화음으로 크리스마스의 설렘과 따뜻함을 나눌 합창팀을 모집합니다.</p>
+<p>지역과 연령에 관계없이 음악을 사랑하는 합창팀이라면 누구나 참여할 수 있으며, 이번 경연대회를 통해 시민들에게 감동과 즐거움을 선사할 특별한 무대를 마련하고자 합니다.</p>
+<p>많은 관심과 참여 바랍니다.</p>
+<h4>1. 모집 개요</h4>
+<ul><li>가. <b>행사명:</b> 제20회 성남동 눈꽃축제 크리스마스 합창경연대회</li><li>나. <b>신청기간:</b> 2026. 11. 3.(화) ~ 11. 30.(월) 18:00까지</li><li>다. <b>모집대상:</b> 지역 및 연령 제한 없는 합창팀</li><li>라. <b>본선 진출팀:</b> 영상 심사를 통해 총 10팀 선정</li><li>마. <b>주최·주관:</b> 청춘문화기획단</li></ul>
+<h4>2. 참가 자격</h4>
+<ul><li>가. 지역 및 연령 제한 없음</li><li>나. 합창 단원 10~20명으로 구성된 팀</li><li>다. 지휘자 및 반주자는 합창 단원 수에서 제외</li><li>라. 성악 전공자는 합창 단원 수의 20% 이하로 제한<ul class="bul"><li>예시) 합창 단원 20명 기준 성악 전공자 최대 4명</li></ul></li></ul>
+<p class="memo">※ 지휘자 및 반주자는 성악 전공자 비율 산정에서도 제외됩니다.</p>
+<h4>3. 경연곡 및 심사 방법</h4>
+<ul><li>가. <b>경연곡</b><ul class="bul"><li>지정곡: 「크리스마스에는 축복을」</li><li>자유곡: 장르 제한 없이 1곡</li><li>본선에서 지정곡과 자유곡, 총 2곡 경연</li><li>경연시간: 곡당 5분 이내</li></ul></li><li>나. <b>본선 진출팀 선정</b><ul class="bul"><li>참가신청서와 함께 제출된 합창 영상을 바탕으로 심사합니다.</li><li>심사를 통해 본선 진출팀 총 10팀을 선정합니다.</li><li>심사 결과는 성남동 눈꽃축제 공식 홈페이지에서 발표합니다.</li></ul></li></ul>
+<h4>4. 참가신청 방법</h4>
+<p>참가를 희망하는 합창팀은 다음 방법 중 하나를 통해 참가신청서를 작성한 후, 합창 영상을 이메일로 제출해 주시기 바랍니다.</p>
+<ul><li>가. <b>참가신청서 작성</b><ul class="bul"><li>방법 ①: 모집 포스터의 QR코드를 통한 온라인 신청</li><li>방법 ②: 성남동 눈꽃축제 공식 홈페이지 접속 후 참가신청</li><li>공식 홈페이지: https://ulsansnow.com</li></ul></li><li>나. <b>합창 영상 제출</b><ul class="bul"><li>참가신청서 작성 후 합창 영상을 이메일로 제출</li><li>영상 제출 이메일: <a href="mailto:naroplanning@gmail.com">naroplanning@gmail.com</a></li><li>제출기한: 2026. 11. 30.(월) 18:00까지</li></ul></li></ul>
+<p class="memo">※ 참가신청서 작성과 합창 영상 제출을 모두 완료해야 접수가 인정됩니다.<br>※ 제출된 영상은 본선 진출팀 선정을 위한 심사자료로 활용됩니다.</p>
+<h4>5. 본선 진출팀 발표</h4>
+<ul><li>가. <b>발표일:</b> 2026. 12. 4.(금)</li><li>나. <b>발표방법:</b> 성남동 눈꽃축제 공식 홈페이지 게시</li><li>다. <b>선정규모:</b> 총 10팀</li></ul>
+<p class="memo">※ 본선 진출팀에 대한 세부 안내사항은 별도로 전달할 예정입니다.</p>
+<h4>6. 본선 경연 일정</h4>
+<ul><li>가. <b>일시:</b> 2026. 12. 26.(토) 15:00</li><li>나. <b>장소:</b> 성남동 눈꽃축제 메인무대(야외)</li><li>다. <b>참가대상:</b> 영상 심사를 통해 선정된 본선 진출팀 10팀</li><li>라. <b>경연내용:</b> 지정곡 및 자유곡 각 1곡</li></ul>
+<h4>7. 시상 내역</h4>
+<p><b>총 10팀 / 총상금 4,900,000원</b></p>
+<table><thead><tr><th>시상 구분</th><th>선정팀</th><th>상금</th></tr></thead><tbody><tr><td>대상</td><td>1팀</td><td class="num">1,500,000원</td></tr><tr><td>최우수상</td><td>1팀</td><td class="num">1,000,000원</td></tr><tr><td>축복상</td><td>2팀</td><td class="num">각 500,000원</td></tr><tr><td>사랑상</td><td>2팀</td><td class="num">각 300,000원</td></tr><tr><td>소망상</td><td>4팀</td><td class="num">각 200,000원</td></tr><tr><th>합계</th><th>10팀</th><th class="num">4,900,000원</th></tr></tbody></table>
+<h4>8. 참가 유의사항</h4>
+<ul><li>가. 참가팀은 신청서에 팀명, 대표자 연락처, 참가인원, 성악 전공자 수 등을 정확하게 기재해야 합니다.</li><li>나. 참가 자격에 부합하지 않거나 제출한 내용이 사실과 다를 경우 심사 및 수상에서 제외될 수 있습니다.</li><li>다. 제출한 합창 영상은 본선 진출팀 선정을 위한 심사자료로 활용됩니다.</li><li>라. 본선 진출팀은 주최·주관 측의 행사 운영 및 안전관리 안내에 협조해야 합니다.</li><li>마. 행사 운영 여건 및 기상 상황에 따라 세부 일정은 변경될 수 있으며, 변경사항은 별도 안내합니다.</li></ul>
+<h4>9. 문의사항</h4>
+<p><b>청춘문화기획단</b></p>
+<ul class="bul"><li>전화: 010-2208-5744</li><li>이메일: <a href="mailto:naroplanning@gmail.com">naroplanning@gmail.com</a></li><li>문의 가능 시간: 평일 11:00~18:00</li></ul>
+<p class="memo">※ 통화가 어려울 경우 문자를 남겨주시면 순차적으로 연락드리겠습니다.</p>
+<p class="sign">주최·주관: 청춘문화기획단</p>
+<p>제20회 성남동 눈꽃축제 크리스마스 합창경연대회에 여러분의 많은 관심과 적극적인 참여를 바랍니다.</p>
+<div class="apply">${APPLY}<button class="btn ghost" data-zoom="choir_notice" aria-label="공고문 원본 크게 보기">공고문 원본 보기</button></div>`;
 const NOTICES=[
+  {id:'6',title:'제20회 성남동 눈꽃축제 크리스마스 합창경연대회 참가팀 모집 공고',author:'축제 사무국',date:'2026-11-03',html:CHOIR_HTML,body:CHOIR_HTML.replace(/<[^>]+>/g,' ')},
   {id:'5',title:'행사장 설치 일정 안내',author:'축제 사무국',date:'2026-10-31',body:'행사장 설치와 철거 일정을 알려 드립니다. 주변 상인과 주민 여러분의 양해를 부탁드립니다.\n\n트리숲: 12월 19일~23일 설치\n눈사람 체험장: 12월 20일 설치\n부스 프로그램: 12월 20일~23일 설치\n일방통행 펜스: 12월 23일 설치, 27일 철거\n무대: 12월 23일 0시~24일 0시 설치, 28일 0시~9시 철거',link:['행사장 구성도 보기','#guide']},
   {id:'4',title:'지난해 제19회 축제에 25만 명이 넘게 다녀갔습니다',author:'축제 사무국',date:'2026-10-31',body:'2025년 12월 24일부터 28일까지 닷새 동안 25만 명이 넘는 분이 성남동을 찾았습니다(울산 중구 추산). 크리스마스 당일에는 한때 7,500명이 넘게 몰렸습니다.\n\n올해 제20회 축제도 많은 관심 부탁드립니다.'},
   {id:'3',title:'행사장 주변 주차 안내',author:'축제 사무국',date:'2026-10-31',body:'행사장 주변 공영주차장 5곳을 찾아오시는길에 정리했습니다. 축제 기간에는 주변이 크게 붐비니 대중교통을 이용해 주세요.',link:['찾아오시는길 보기','#map']},
@@ -889,7 +953,7 @@ function boardView(k,id){
   const p=posts(k).find(x=>x.id===id),box=$('#bd-'+k);
   if(!p){box.innerHTML=`<div class="bd-empty"><b>글을 찾을 수 없습니다.</b></div><div class="bd-acts"><a class="btn ghost" href="#${k}">목록</a></div>`;return}
   const link=p.link?`\n\n<a href="${p.link[1]}"${/^http/.test(p.link[1])?' target="_blank" rel="noopener"':''}>${p.link[0]}</a>`:'';
-  box.innerHTML=`<div class="art-h"><h3>${esc(p.title)}</h3><p class="num">${esc(p.author||p.name)} · ${p.date}</p></div>${p.img?`<img class="art-i" src="${p.img}" alt="${esc(p.title)}">`:''}<div class="art-b">${esc(p.body)}${link}</div><div class="bd-acts"><a class="btn" href="#${k}">목록</a></div>`;
+  box.innerHTML=`<div class="art-h"><h3>${esc(p.title)}</h3><p class="num">${esc(p.author||p.name)} · ${p.date}</p></div>${p.img?`<img class="art-i" src="${p.img}" alt="${esc(p.title)}">`:''}${p.html?`<div class="art-b rich">${p.html}</div>`:`<div class="art-b">${esc(p.body)}${link}</div>`}<div class="bd-acts"><a class="btn" href="#${k}">목록</a></div>`;
 }
 document.addEventListener('submit',async e=>{
   const f=e.target;
@@ -948,6 +1012,7 @@ $('.skip').addEventListener('click',e=>{e.preventDefault();$('#main').focus()});
 $('#galGrid').innerHTML=GALLERY.map(g=>`<button data-zoom="${g.key}" aria-label="${g.title} 크게 보기"><img src="${g.img}" alt="${g.title}" loading="lazy"><b>${g.title}</b></button>`).join('');
 
 /* 처음 화면 공지 */
+$('#recruit').hidden=!CHOIR_OPEN;
 $('#homeNotice').innerHTML=NOTICES.slice(0,3).map(n=>`<li><a href="#notice-${n.id}"><span>${esc(n.title)}</span><time class="num">${n.date.slice(5).replace('-','.')}</time></a></li>`).join('');
 
 /* 찾기 */
