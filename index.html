@@ -340,6 +340,8 @@ table{border-collapse:collapse;width:100%}
 .art-b.rich th,.art-b.rich td{border:1px solid var(--line);padding:8px 10px;text-align:center}
 .art-b.rich th{background:var(--paper)}
 .art-b.rich .apply{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:4px 0 8px;padding:16px;border-radius:12px;background:var(--paper)}
+.art-b.rich table.docs{max-width:none}.art-b.rich table.docs td:nth-child(3){text-align:left}.art-b.rich table.docs td:nth-child(2),.art-b.rich table.docs td:nth-child(4){word-break:keep-all}
+@media (max-width:560px){.art-b.rich table.docs{font-size:14px;line-height:1.55}.art-b.rich table.docs th,.art-b.rich table.docs td{padding:6px 5px}}
 .art-b.rich .apply p{flex:1 1 240px;min-width:0;margin:0}
 .art-b.rich .apply+.rich-img{margin-top:18px}
 .rich-img{display:block;width:100%;max-width:560px;margin:0 0 18px;padding:0;border:0;background:none;cursor:zoom-in}
@@ -818,7 +820,35 @@ const CHOIR_HTML=`<div class="apply">${APPLY}<p>참가신청서 작성과 합창
 <p class="sign">주최·주관: 청춘문화기획단</p>
 <p>제20회 성남동 눈꽃축제 크리스마스 합창경연대회에 여러분의 많은 관심과 적극적인 참여를 바랍니다.</p>
 <div class="apply">${APPLY}<button class="btn ghost" data-zoom="choir_notice" aria-label="공고문 원본 크게 보기">공고문 원본 보기</button></div>`;
+const SNOW_MAIL='niceulsan@naver.com';
+const SNOW_OPEN=Date.now()<Date.parse('2026-11-20T17:00:00+09:00');
+const SNOW_FORM='<a class="btn ghost" href="files/snowmachine_2026-01.hwpx" download="제20회 성남동 눈꽃축제 스노우머신 공모.hwpx">신청서 양식 내려받기</a>';
+const SNOW_APPLY=(SNOW_OPEN?`<a class="btn gold" href="mailto:${SNOW_MAIL}?subject=${encodeURIComponent('[스노우머신 공모] 업체명')}">이메일로 서류 제출하기</a>`:'<span class="btn off">접수가 마감되었습니다</span>')+SNOW_FORM;
+const SNOW_HTML=`<div class="apply">${SNOW_APPLY}<p>접수 마감: 2026년 11월 20일(금) 17:00까지 · 이메일 접수</p></div>
+<p class="memo">성남동눈꽃축제 공고 제2026-01호</p>
+<p class="lead">「제20회 성남동 눈꽃축제」 시스템 업체 공모</p>
+<p>비영리단체 청춘문화기획단은 「제20회 성남동 눈꽃축제」의 인공눈 연출을 위한 스노우머신 설치·운영 업체를 선정하고자 다음과 같이 입찰 공고합니다.</p>
+<p class="sign">2026년 11월 3일<br>청춘문화기획단장</p>
+<h4>1. 공모 개요</h4>
+<ul><li>○ <b>공모명:</b> 제20회 성남동 눈꽃축제 인공눈 연출 및 스노우머신 설치·운영 용역</li><li>○ <b>공고기간:</b> 2026년 11월 6일(금)부터 11월 20일(금) 17:00까지</li><li>○ <b>사업예산:</b> 금87,000,000원(금팔천칠백만원, 부가가치세 포함)</li><li>○ <b>참가대상:</b> 본 용역에 필요한 장비와 운영 인력을 확보하고 인공눈 연출 업무를 수행할 수 있는 업체</li><li>○ <b>사업내용:</b> 스노우머신 총 48대의 설치·운영·철거 및 인공눈 연출</li><li>○ <b>시설 사용기간:</b> 2026년 12월 24일(목) ~ 27일(일), 4일간</li></ul>
+<h4>2. 공모 방법: 경쟁입찰</h4>
+<ul><li>○ <b>인터넷 공고:</b> 홈페이지 공고<ul class="bul"><li>성남동 눈꽃축제 홈페이지: ulsansnow.com</li></ul></li></ul>
+<h4>3. 공모 서류</h4>
+<table class="docs"><thead><tr><th>번호</th><th>구분</th><th>내용</th><th>비고</th></tr></thead><tbody>
+<tr><td>1</td><td>공모 신청서</td><td>· 공모 참여 기본 신청서</td><td>필히 작성</td></tr>
+<tr><td>2</td><td>회사 소개서</td><td>· 회사 연혁(사업자등록증, 자본금, 직원현황)<br>· 최근 3년간 행사실적<br>· 시설보유현황(장비리스트 + 자료 사진 + 설명)<br>· 기타 소개자료(특기사항, 사진자료 등)</td><td>회사 소개서 최대한 상세히 작성 요망</td></tr>
+<tr><td>3</td><td>세부견적서</td><td>· 최대한 구체적으로 제작 요망</td><td>VAT 포함</td></tr>
+<tr><td>4</td><td>연출(설치)시안</td><td>· 무대</td><td></td></tr>
+<tr><td>5</td><td>설치계획서</td><td>· 시방서</td><td></td></tr>
+</tbody></table>
+<p class="memo">※ 서류는 위의 순서대로 정리하여 이메일로 제출 요망<br>※ 공모 신청서 양식은 '신청서 양식 내려받기'로 받는 한글 파일(공고문 포함)의 마지막 쪽에 있습니다.</p>
+<h4>4. 신청 및 접수</h4>
+<ul><li>○ <b>기간:</b> 2026년 11월 6일(금) ~ 11월 20일(금) 17:00까지</li><li>○ <b>접수방법:</b> 이메일 접수</li><li>○ <b>문의 및 접수처</b><ul class="bul"><li>전화: 010-4825-0560, 성남동 눈꽃축제 사무국</li><li>이메일: <a href="mailto:${SNOW_MAIL}">${SNOW_MAIL}</a></li></ul></li></ul>
+<h4>5. 기타사항</h4>
+<p>세부 내용은 상기 문의처로 연락 바람</p>
+<div class="apply">${SNOW_APPLY}</div>`;
 const NOTICES=[
+  {id:'7',title:'제20회 성남동 눈꽃축제 스노우머신 설치·운영 업체 공모 공고',author:'축제 사무국',date:'2026-11-06',html:SNOW_HTML,body:SNOW_HTML.replace(/<[^>]+>/g,' ')},
   {id:'6',title:'제20회 성남동 눈꽃축제 크리스마스 합창경연대회 참가팀 모집 공고',author:'축제 사무국',date:'2026-11-03',html:CHOIR_HTML,body:CHOIR_HTML.replace(/<[^>]+>/g,' ')},
   {id:'5',title:'행사장 설치 일정 안내',author:'축제 사무국',date:'2026-10-31',body:'행사장 설치와 철거 일정을 알려 드립니다. 주변 상인과 주민 여러분의 양해를 부탁드립니다.\n\n트리숲: 12월 19일~23일 설치\n눈사람 체험장: 12월 20일 설치\n부스 프로그램: 12월 20일~23일 설치\n일방통행 펜스: 12월 23일 설치, 27일 철거\n무대: 12월 23일 0시~24일 0시 설치, 28일 0시~9시 철거',link:['행사장 구성도 보기','#guide']},
   {id:'4',title:'지난해 제19회 축제에 25만 명이 넘게 다녀갔습니다',author:'축제 사무국',date:'2026-10-31',body:'2025년 12월 24일부터 28일까지 닷새 동안 25만 명이 넘는 분이 성남동을 찾았습니다(울산 중구 추산). 크리스마스 당일에는 한때 7,500명이 넘게 몰렸습니다.\n\n올해 제20회 축제도 많은 관심 부탁드립니다.'},
