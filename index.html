@@ -493,6 +493,7 @@ dialog::backdrop{background:rgba(30,5,8,.86)}
     <span>울산 중구 성남동 젊음의거리 일원</span>
   </div></div>
   <a class="recruit" id="recruit" href="#notice-6" hidden><span class="wrap recruit-in"><b>참가팀 모집</b><span>크리스마스 합창 경연대회 · 11월 30일(월) 오후 6시까지</span><em>자세히 보기</em></span></a>
+  <a class="recruit" id="recruit2" href="#notice-9" hidden><span class="wrap recruit-in"><b>업체 모집</b><span>판매·체험 부스 · 12월 4일(금)까지</span><em>자세히 보기</em></span></a>
 
   <div class="sec"><div class="wrap">
     <div class="sec-head"><h2>축제 정보 안내</h2></div>
@@ -622,7 +623,7 @@ dialog::backdrop{background:rgba(30,5,8,.86)}
     <div class="leg" id="leg">
       <button data-z="stage"><i style="background:var(--c-stage)"></i><b>무대</b><span>12월 24~27일</span><span>개막식 17:00~19:00</span></button>
       <button data-z="tree"><i style="background:var(--c-tree)"></i><b>트리숲</b><span>12월 24~27일</span><span>매일 15:00 시작</span></button>
-      <button data-z="booth"><i style="background:var(--c-booth)"></i><b>부스 프로그램</b><span>12월 24~27일</span><span>12:00~21:00</span></button>
+      <button data-z="booth"><i style="background:var(--c-booth)"></i><b>부스 프로그램</b><span>12월 24~27일</span><span>10:00~18:00</span></button>
       <button data-z="snowman"><i style="background:var(--c-snowman)"></i><b>눈사람 체험장</b><span>12월 24~27일</span><span>15:00~20:00 (27일은 18:00까지)</span></button>
       <button data-z="fence"><i style="background:var(--c-fence)"></i><b>일방통행 펜스</b><span>12월 23일 설치</span><span>12월 27일 철거</span></button>
     </div>
@@ -642,7 +643,7 @@ dialog::backdrop{background:rgba(30,5,8,.86)}
         <li>타임테이블은 현장 상황과 기상 조건에 따라 일부 바뀔 수 있습니다.</li>
         <li>공연 시간에는 리허설 시간이 포함되어 있습니다.</li>
         <li>개막식은 24일 17:00~19:00, 무대에서 열립니다.</li>
-        <li>부스 프로그램은 매일 12:00~21:00에 운영합니다.</li>
+        <li>부스 프로그램은 매일 10:00~18:00에 운영합니다.</li>
       </ul>
     </div>
     <div>
@@ -653,7 +654,7 @@ dialog::backdrop{background:rgba(30,5,8,.86)}
         <article><h4>눈사람 체험장</h4><p>직접 눈사람을 만들어 봅니다. 매일 오후 3시에 시작해 24~26일은 저녁 8시, 27일은 오후 6시에 마칩니다.</p></article>
         <article><h4>인공눈</h4><p>매일 오후 3시부터 눈이 내립니다. 24·25일은 밤 10시, 26일은 밤 9시, 27일은 오후 6시에 그칩니다.</p></article>
         <article><h4>트리숲</h4><p>인공눈과 함께 오후 3시에 시작합니다. 24·25일은 밤 10시, 26일은 밤 9시, 27일은 오후 6시에 마칩니다.</p></article>
-        <article><h4>부스 프로그램</h4><p>젊음의거리에서 매일 낮 12시부터 밤 9시까지 운영합니다.</p></article>
+        <article><h4>부스 프로그램</h4><p>젊음의거리에서 매일 오전 10시부터 오후 6시까지 운영합니다.</p></article>
       </div>
     </div>
   </div>
@@ -850,6 +851,30 @@ const SNOW_HTML=`<div class="apply">${SNOW_APPLY}<p>접수 마감: 2026년 11월
 <h4>5. 기타사항</h4>
 <p>세부 내용은 상기 문의처로 연락 바람</p>
 <div class="apply">${SNOW_APPLY}</div>`;
+/* 판매/체험부스 업체 모집 (형 11/27 공고문, 고친 곳: 24일(목)·1500mm·주소·이메일만·발표 12/7·신청서 판매□) */
+const BOOTH_MAIL='niceulsan@naver.com';
+const BOOTH_OPEN=Date.now()<Date.parse('2026-12-05T00:00:00+09:00');
+const BOOTH_FORM='<a class="btn ghost" href="files/booth_2026.hwpx" download="제20회 성남동 눈꽃축제 판매체험부스 모집 공고.hwpx">신청서 양식 내려받기</a>';
+const BOOTH_APPLY=(BOOTH_OPEN?`<a class="btn gold" href="mailto:${BOOTH_MAIL}?subject=${encodeURIComponent('[부스 신청] 단체명')}">이메일로 신청서 보내기</a>`:'<span class="btn off">접수가 마감되었습니다</span>')+BOOTH_FORM;
+const BOOTH_HTML=`<div class="apply">${BOOTH_APPLY}<p>접수 마감: 2026년 12월 4일(금)까지 · 이메일 접수</p></div>
+<p class="lead">「제20회 성남동 눈꽃축제」 판매&체험 부스 운영 업체 모집</p>
+<h4>1. 부스 업체 모집 기간</h4>
+<ul class="bul"><li>2026년 11월 27일(금) ~ 12월 4일(금)</li></ul>
+<h4>2. 부스 운영 일시</h4>
+<ul class="bul"><li>2026년 12월 24일(목) ~ 27일(일), 4일간</li><li>10시 ~ 18시</li></ul>
+<h4>3. 판매&체험 부스</h4>
+<ul class="bul"><li>성남동 눈꽃축제와 어울리는 판매&체험 부스</li><li><b>판매부스:</b> 핸드메이드 제품으로 크리스마스와 어울리는 내용으로 구성</li><li><b>체험부스:</b> 크리스마스와 어울리는 체험부스</li><li><b>부스 규모:</b> 우드부스 5팀(3m×3m) / 실내 테이블 7팀(1500mm)</li></ul>
+<h4>4. 참여방법</h4>
+<ul class="bul"><li>성남동 눈꽃축제 홈페이지(ulsansnow.com) 공지사항의 이 공고에서 '신청서 양식 내려받기'를 눌러 신청서를 받은 뒤, 작성하여 이메일로 접수</li></ul>
+<h4>5. 접수방법</h4>
+<ul class="bul"><li><b>접수:</b> 이메일 접수 (마감일에 도착한 메일까지 유효)</li><li><b>이메일:</b> <a href="mailto:${BOOTH_MAIL}">${BOOTH_MAIL}</a></li></ul>
+<h4>6. 참가단체 발표</h4>
+<ul class="bul"><li>2026년 12월 7일(월) 개별 통보</li></ul>
+<p class="memo">※ 선정된 단체는 12월 23일(수) 오전까지 입점 및 설치 완료<br>※ 부스 위치는 사무국에서 임의 배치</p>
+<h4>7. 문의</h4>
+<ul class="bul"><li><b>전화:</b> 010-4825-0560, 성남동 눈꽃축제 사무국</li><li><b>이메일:</b> <a href="mailto:${BOOTH_MAIL}">${BOOTH_MAIL}</a></li></ul>
+<p class="memo">※ 첨부: 제20회 성남동 눈꽃축제 판매&체험 부스 입점 신청서 1부<br>※ 신청서는 '신청서 양식 내려받기'로 받는 한글 파일(공고문 포함) 뒤쪽에 있습니다.</p>
+<div class="apply">${BOOTH_APPLY}</div>`;
 /* 스노우머신 업체 선정 결과 (형 11/23: 선정일 11/21 · 금액 빼기 · 업체 이름은 '스ㅇㅇㅇ'로 가림) */
 const SNOW_RESULT_HTML=`<p class="lead">「제20회 성남동 눈꽃축제」 스노우머신 설치·운영 업체 선정 결과</p>
 <p>「제20회 성남동 눈꽃축제」 스노우머신 설치·운영 업체 공모(성남동눈꽃축제 공고 제2026-01호)의 선정 결과를 다음과 같이 알려 드립니다.</p>
@@ -859,6 +884,7 @@ const SNOW_RESULT_HTML=`<p class="lead">「제20회 성남동 눈꽃축제」 �
 <p class="sign">2026년 11월 23일<br>청춘문화기획단장</p>
 <div class="apply"><a class="btn ghost" href="#notice-7">공모 공고 다시 보기</a></div>`;
 const NOTICES=[
+  {id:'9',title:'제20회 성남동 눈꽃축제 판매/체험부스 업체 모집 공고',author:'축제 사무국',date:'2026-11-27',html:BOOTH_HTML,body:BOOTH_HTML.replace(/<[^>]+>/g,' ')},
   {id:'8',title:'제20회 성남동 눈꽃축제 스노우머신 설치·운영 업체 선정 결과 공고',author:'축제 사무국',date:'2026-11-23',html:SNOW_RESULT_HTML,body:SNOW_RESULT_HTML.replace(/<[^>]+>/g,' ')},
   {id:'7',title:'제20회 성남동 눈꽃축제 스노우머신 설치·운영 업체 공모 공고',author:'축제 사무국',date:'2026-11-06',html:SNOW_HTML,body:SNOW_HTML.replace(/<[^>]+>/g,' ')},
   {id:'6',title:'제20회 성남동 눈꽃축제 크리스마스 합창 경연대회 참가팀 모집 안내',author:'축제 사무국',date:'2026-11-03',html:CHOIR_HTML,body:CHOIR_HTML.replace(/<[^>]+>/g,' ')},
@@ -1061,6 +1087,7 @@ $('#galGrid').innerHTML=GALLERY.map(g=>`<button data-zoom="${g.key}" aria-label=
 
 /* 처음 화면 공지 */
 $('#recruit').hidden=!CHOIR_OPEN;
+$('#recruit2').hidden=!BOOTH_OPEN;
 $('#homeNotice').innerHTML=NOTICES.slice(0,3).map(n=>`<li><a href="#notice-${n.id}"><span>${esc(n.title)}</span><time class="num">${n.date.slice(5).replace('-','.')}</time></a></li>`).join('');
 
 /* 찾기 */
